@@ -54,7 +54,9 @@ export class PluginTaskSchedulerJanitor {
   private async runOnce() {
     const dbNull = this.knex.raw('null');
 
-    const tasks = await this.knex<DbTasksRow>(DB_TASKS_TABLE)
+    const tasks: Array<{ id: string }> = await this.knex<DbTasksRow>(
+      DB_TASKS_TABLE,
+    )
       .where('current_run_expires_at', '<', this.knex.fn.now())
       .update({
         current_run_ticket: dbNull,

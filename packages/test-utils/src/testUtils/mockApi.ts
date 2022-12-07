@@ -14,6 +14,26 @@
  * limitations under the License.
  */
 
-export { startTestBackend } from './TestBackend';
-export type { TestBackendOptions } from './TestBackend';
-export { mockService } from './mockService';
+import { ApiRef } from '@backstage/core-plugin-api';
+
+// export type MockedApi<TApi, TImpl> = {
+//   [K in keyof TImpl]: TApi[K] extends jest.Mock<TApi[K]> ?  (...args: infer TArgs) => infer TReturn;
+// };
+
+/**
+ * Simplifies the creation of a mock of a utility API.
+ *
+ * @public
+ */
+export function mockApi<TApi, TImpl extends Partial<TImpl>>(
+  _apiRef: ApiRef<TApi>,
+  api: TImpl,
+): {
+  mock: TImpl;
+  impl: TApi;
+} {
+  return {
+    mock: api,
+    impl: api as unknown as TApi,
+  };
+}

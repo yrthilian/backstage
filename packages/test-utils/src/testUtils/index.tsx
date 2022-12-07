@@ -15,6 +15,7 @@
  */
 
 export * from './apis';
+export { mockApi } from './mockApi';
 export { default as mockBreakpoint } from './mockBreakpoint';
 export {
   wrapInTestApp,
