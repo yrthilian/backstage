@@ -9,7 +9,7 @@ import { PaletteOptions } from '@material-ui/core/styles/createPalette';
 import { Theme } from '@material-ui/core';
 import { ThemeOptions } from '@material-ui/core';
 
-// @public
+// @public @deprecated
 export type BackstagePalette = Palette & BackstagePaletteAdditions;
 
 // @public
@@ -74,11 +74,11 @@ export type BackstagePaletteAdditions = {
   };
 };
 
-// @public
+// @public @deprecated
 export type BackstagePaletteOptions = PaletteOptions &
   BackstagePaletteAdditions;
 
-// @public
+// @public @deprecated
 export interface BackstageTheme extends Theme {
   // (undocumented)
   getPageTheme: (selector: PageThemeSelector) => PageTheme;
@@ -88,7 +88,7 @@ export interface BackstageTheme extends Theme {
   palette: BackstagePalette;
 }
 
-// @public
+// @public @deprecated
 export interface BackstageThemeOptions extends ThemeOptions {
   // (undocumented)
   getPageTheme: (selector: PageThemeSelector) => PageTheme;
@@ -101,19 +101,28 @@ export interface BackstageThemeOptions extends ThemeOptions {
 // @public
 export const colorVariants: Record<string, string[]>;
 
-// @public
-export function createTheme(options: SimpleThemeOptions): BackstageTheme;
+// @public @deprecated (undocumented)
+export const createTheme: typeof createV4Theme;
+
+// @public @deprecated (undocumented)
+export const createThemeOptions: typeof createV4ThemeOptions;
+
+// @public @deprecated (undocumented)
+export const createThemeOverrides: typeof createV4ThemeOverrides;
 
 // @public
-export function createThemeOptions(
-  options: SimpleThemeOptions,
-): BackstageThemeOptions;
+export function createV4Theme(options: SimpleV4ThemeOptions): Theme;
 
 // @public
-export function createThemeOverrides(theme: BackstageTheme): Overrides;
+export function createV4ThemeOptions(
+  options: SimpleV4ThemeOptions,
+): ThemeOptions;
 
 // @public
-export const darkTheme: BackstageTheme;
+export function createV4ThemeOverrides(theme: Theme): Overrides;
+
+// @public
+export const darkTheme: Theme;
 
 // @public
 export function genPageTheme(props: {
@@ -125,7 +134,7 @@ export function genPageTheme(props: {
 }): PageTheme;
 
 // @public
-export const lightTheme: BackstageTheme;
+export const lightTheme: Theme;
 
 // @public
 export type PageTheme = {
@@ -146,9 +155,12 @@ export type PageThemeSelector = {
 // @public
 export const shapes: Record<string, string>;
 
+// @public @deprecated (undocumented)
+export type SimpleThemeOptions = SimpleV4ThemeOptions;
+
 // @public
-export type SimpleThemeOptions = {
-  palette: BackstagePaletteOptions;
+export type SimpleV4ThemeOptions = {
+  palette: PaletteOptions;
   defaultPageTheme: string;
   pageTheme?: Record<string, PageTheme>;
   fontFamily?: string;
