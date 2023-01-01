@@ -63,9 +63,10 @@ const useStyles = makeStyles<BackstageTheme, { sidebarConfig: SidebarConfig }>(
       '&::-webkit-scrollbar': {
         display: 'none',
       },
-      '& .MuiButtonBase-root': {
-        textTransform: 'none',
-      },
+      '& .MuiButtonBase-root, & .m4-MuiButtonBase-root, & .m5-MuiButtonBase-root':
+        {
+          textTransform: 'none',
+        },
     }),
     drawerOpen: props => ({
       width: props.sidebarConfig.drawerWidthOpen,
