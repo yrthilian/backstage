@@ -1974,7 +1974,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addons@npm:6.5.15, @storybook/addons@npm:^6.0.0, @storybook/addons@npm:^6.5.9":
+"@storybook/addons@npm:6.5.15, @storybook/addons@npm:^6.5.14, @storybook/addons@npm:^6.5.9":
   version: 6.5.15
   resolution: "@storybook/addons@npm:6.5.15"
   dependencies:
@@ -2024,7 +2024,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/api@npm:6.5.15, @storybook/api@npm:^6.0.0":
+"@storybook/api@npm:6.5.15, @storybook/api@npm:^6.5.14":
   version: 6.5.15
   resolution: "@storybook/api@npm:6.5.15"
   dependencies:
@@ -2266,7 +2266,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/components@npm:6.5.15, @storybook/components@npm:^6.0.0":
+"@storybook/components@npm:6.5.15, @storybook/components@npm:^6.5.14":
   version: 6.5.15
   resolution: "@storybook/components@npm:6.5.15"
   dependencies:
@@ -2393,7 +2393,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/core-events@npm:6.5.15, @storybook/core-events@npm:^6.0.0":
+"@storybook/core-events@npm:6.5.15, @storybook/core-events@npm:^6.5.14":
   version: 6.5.15
   resolution: "@storybook/core-events@npm:6.5.15"
   dependencies:
@@ -2926,7 +2926,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/theming@npm:6.5.15, @storybook/theming@npm:^6.0.0":
+"@storybook/theming@npm:6.5.15, @storybook/theming@npm:^6.5.14":
   version: 6.5.15
   resolution: "@storybook/theming@npm:6.5.15"
   dependencies:
@@ -5802,7 +5802,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-deep-equal@npm:^3.0.0, fast-deep-equal@npm:^3.1.1, fast-deep-equal@npm:^3.1.3":
+"fast-deep-equal@npm:^3.1.1, fast-deep-equal@npm:^3.1.3":
   version: 3.1.3
   resolution: "fast-deep-equal@npm:3.1.3"
   checksum: e21a9d8d84f53493b6aa15efc9cfd53dd5b714a1f23f67fb5dc8f574af80df889b3bce25dc081887c6d25457cce704e636395333abad896ccdec03abaf1f3f9d
@@ -10619,16 +10619,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"storybook-dark-mode@npm:^1.1.0":
-  version: 1.1.2
-  resolution: "storybook-dark-mode@npm:1.1.2"
+"storybook-dark-mode@npm:^2.0.0":
+  version: 2.0.5
+  resolution: "storybook-dark-mode@npm:2.0.5"
   dependencies:
-    "@storybook/addons": ^6.0.0
-    "@storybook/api": ^6.0.0
-    "@storybook/components": ^6.0.0
-    "@storybook/core-events": ^6.0.0
-    "@storybook/theming": ^6.0.0
-    fast-deep-equal: ^3.0.0
+    "@storybook/addons": ^6.5.14
+    "@storybook/api": ^6.5.14
+    "@storybook/components": ^6.5.14
+    "@storybook/core-events": ^6.5.14
+    "@storybook/theming": ^6.5.14
+    fast-deep-equal: ^3.1.3
     global: ^4.4.0
     memoizerific: ^1.11.3
   peerDependencies:
@@ -10639,7 +10639,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: c1522be5d7b52315e7343840bc5b6ed771e671814ccc0f63fbaa3a9f47d25c5cc0e0f5d0cdb5ac3e75e356e93d66ced8722ad2b0f7306b4113489e21cf8b07ff
+  checksum: 0888c881beace9ca27985c8959f4207a42e6a952f8a62d60216ff1ef6df16150e4a0297a39f83870969e8592beaf59999e035a1ed50aeb0ad854487060cee699
   languageName: node
   linkType: hard
 
@@ -10662,7 +10662,7 @@ __metadata:
     react: ^17.0.2
     react-dom: ^17.0.2
     react-hot-loader: ^4.13.0
-    storybook-dark-mode: ^1.1.0
+    storybook-dark-mode: ^2.0.0
     swc-loader: ^0.2.3
   peerDependencies:
     "@backstage/core-app-api": "*"
