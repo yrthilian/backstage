@@ -63,7 +63,7 @@ describe('<HeaderTabs />', () => {
         badgeContent="three new alarms"
       >
         <span ref={ref} {...props}>
-          {props.children}
+          {props as React.ReactNode}
         </span>
       </Badge>
     ));

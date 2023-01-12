@@ -16,6 +16,7 @@
 
 import tlr, { render } from '@testing-library/react';
 import React from 'react';
+import { AppRouter } from './AppRouter';
 
 describe.each(['beta', 'stable'])('react-router %s', rrVersion => {
   beforeAll(() => {
@@ -89,18 +90,17 @@ describe.each(['beta', 'stable'])('react-router %s', rrVersion => {
         bindRoutes: () => {},
       });
 
-      const AppProvider = app.getProvider();
-      const AppRouter = app.getRouter();
-
       const rendered = render(
-        <AppProvider>
-          <AppRouter>
-            <FlatRoutes>
-              <Route path="/" element={<Navigate to="bar" />} />
-              <Route path="/bar" element={<span>bar</span>} />
-            </FlatRoutes>
-          </AppRouter>
-        </AppProvider>,
+        <>
+          {app.createRoot(
+            <AppRouter>
+              <FlatRoutes>
+                <Route path="/" element={<Navigate to="bar" />} />
+                <Route path="/bar" element={<span>bar</span>} />
+              </FlatRoutes>
+            </AppRouter>,
+          )}
+        </>,
       );
 
       await expect(rendered.findByText('bar')).resolves.toBeInTheDocument();

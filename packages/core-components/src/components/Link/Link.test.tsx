@@ -134,7 +134,9 @@ describe('<Link />', () => {
   });
 
   describe('useResolvedPath', () => {
-    const wrapper: WrapperComponent<{}> = ({ children }) => {
+    const wrapper: WrapperComponent<{ children?: React.ReactNode }> = ({
+      children,
+    }) => {
       const configApi = new ConfigReader({
         app: { baseUrl: 'http://localhost:3000/example' },
       });

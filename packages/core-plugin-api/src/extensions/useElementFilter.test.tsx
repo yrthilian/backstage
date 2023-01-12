@@ -65,7 +65,7 @@ describe('useElementFilter', () => {
     );
 
     const { result } = renderHook(
-      props =>
+      (props: { tree: JSX.Element; children?: React.ReactNode }) =>
         useElementFilter(props.tree, elements =>
           elements
             .selectByComponentData({ key: WRAPPING_COMPONENT_KEY })
@@ -97,7 +97,7 @@ describe('useElementFilter', () => {
     );
 
     const { result } = renderHook(
-      props =>
+      (props: { tree: JSX.Element; children?: React.ReactNode }) =>
         useElementFilter(props.tree, elements =>
           elements.findComponentData({ key: WRAPPING_COMPONENT_KEY }),
         ),
@@ -132,7 +132,7 @@ describe('useElementFilter', () => {
     );
 
     const { result } = renderHook(
-      props =>
+      (props: { tree: JSX.Element; children?: React.ReactNode }) =>
         useElementFilter(props.tree, elements =>
           elements
             .selectByComponentData({ key: WRAPPING_COMPONENT_KEY })
@@ -176,7 +176,7 @@ describe('useElementFilter', () => {
         );
 
         const { result } = renderHook(
-          props =>
+          (props: { tree: JSX.Element; children?: React.ReactNode }) =>
             useElementFilter(props.tree, elements =>
               elements
                 .selectByComponentData({ key: WRAPPING_COMPONENT_KEY })
@@ -213,7 +213,7 @@ describe('useElementFilter', () => {
         );
 
         const { result } = renderHook(
-          props =>
+          (props: { tree: JSX.Element; children?: React.ReactNode }) =>
             useElementFilter(props.tree, elements =>
               elements
                 .selectByComponentData({ key: WRAPPING_COMPONENT_KEY })
@@ -251,7 +251,7 @@ describe('useElementFilter', () => {
         );
 
         const { result } = renderHook(
-          props =>
+          (props: { tree: JSX.Element; children?: React.ReactNode }) =>
             useElementFilter(props.tree, elements =>
               elements
                 .selectByComponentData({ key: WRAPPING_COMPONENT_KEY })
@@ -287,7 +287,7 @@ describe('useElementFilter', () => {
         );
 
         const { result } = renderHook(
-          props =>
+          (props: { tree: JSX.Element; children?: React.ReactNode }) =>
             useElementFilter(props.tree, elements =>
               elements
                 .selectByComponentData({ key: WRAPPING_COMPONENT_KEY })
@@ -312,7 +312,7 @@ describe('useElementFilter', () => {
     );
 
     const { result } = renderHook(
-      props =>
+      (props: { tree: JSX.Element; children?: React.ReactNode }) =>
         useElementFilter(props.tree, elements =>
           elements
             .selectByComponentData({
@@ -357,7 +357,7 @@ describe('useElementFilter', () => {
     );
 
     const { result } = renderHook(
-      props =>
+      (props: { tree: JSX.Element; children?: React.ReactNode }) =>
         useElementFilter(props.tree, elements =>
           elements
             .selectByComponentData({ key: WRAPPING_COMPONENT_KEY })

@@ -21,7 +21,7 @@ import { lightTheme } from '@backstage/theme';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
 import MockIcon from '@material-ui/icons/AcUnit';
-import { createSpecializedApp } from '@backstage/core-app-api';
+import { AppRouter, createSpecializedApp } from '@backstage/core-app-api';
 import {
   BootErrorPageProps,
   RouteRef,
@@ -177,17 +177,18 @@ export function createTestAppWrapper(
     },
   );
 
-  const AppProvider = app.getProvider();
-  const AppRouter = app.getRouter();
-
-  const TestAppWrapper = ({ children }: { children: ReactNode }) => (
-    <AppProvider>
-      <AppRouter>
-        <NoRender>{routeElements}</NoRender>
-        {children}
-      </AppRouter>
-    </AppProvider>
-  );
+  const TestAppWrapper = ({ children }: { children: ReactNode }) => {
+    return (
+      <>
+        {app.createRoot(
+          <AppRouter>
+            <NoRender>{routeElements}</NoRender>
+            {children}
+          </AppRouter>,
+        )}
+      </>
+    );
+  };
 
   return TestAppWrapper;
 }

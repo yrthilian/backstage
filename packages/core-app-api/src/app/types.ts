@@ -70,9 +70,9 @@ export type AppComponents = {
   NotFoundErrorPage: ComponentType<{}>;
   BootErrorPage: ComponentType<BootErrorPageProps>;
   Progress: ComponentType<{}>;
-  Router: ComponentType<{ basename?: string }>;
+  Router: ComponentType<{ basename?: string; children?: React.ReactNode }>;
   ErrorBoundaryFallback: ComponentType<ErrorBoundaryFallbackProps>;
-  ThemeProvider?: ComponentType<{}>;
+  ThemeProvider?: ComponentType<{ children?: React.ReactNode }>;
 
   /**
    * An optional sign-in page that will be rendered instead of the AppRouter at startup.

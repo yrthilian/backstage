@@ -15,7 +15,7 @@
  */
 
 import React from 'react';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook, WrapperComponent } from '@testing-library/react-hooks';
 import {
   useEntity,
   useAsyncEntity,
@@ -31,18 +31,22 @@ const entity = { metadata: { name: 'my-entity' }, kind: 'MyKind' } as Entity;
 
 describe('useEntity', () => {
   it('should throw if no entity is provided', async () => {
+    const wrapper: WrapperComponent<{ children?: React.ReactNode }> = ({
+      children,
+    }) => <EntityProvider children={children} />;
     const { result } = renderHook(() => useEntity(), {
-      wrapper: ({ children }) => <EntityProvider children={children} />,
+      wrapper,
     });
 
     expect(result.error?.message).toMatch(/entity has not been loaded/);
   });
 
   it('should provide an entity', async () => {
+    const wrapper: WrapperComponent<{ children?: React.ReactNode }> = ({
+      children,
+    }) => <EntityProvider entity={entity} children={children} />;
     const { result } = renderHook(() => useEntity(), {
-      wrapper: ({ children }) => (
-        <EntityProvider entity={entity} children={children} />
-      ),
+      wrapper,
     });
 
     expect(result.current.entity).toBe(entity);
@@ -51,12 +55,15 @@ describe('useEntity', () => {
   it('should provide entityRef analytics context', () => {
     const analyticsSpy = new MockAnalyticsApi();
     const apis = TestApiRegistry.from([analyticsApiRef, analyticsSpy]);
+    const wrapper: WrapperComponent<{ children?: React.ReactNode }> = ({
+      children,
+    }) => (
+      <ApiProvider apis={apis}>
+        <EntityProvider entity={entity} children={children} />
+      </ApiProvider>
+    );
     const { result } = renderHook(() => useAnalytics(), {
-      wrapper: ({ children }) => (
-        <ApiProvider apis={apis}>
-          <EntityProvider entity={entity} children={children} />
-        </ApiProvider>
-      ),
+      wrapper,
     });
 
     result.current.captureEvent('test', 'value');
@@ -69,10 +76,11 @@ describe('useEntity', () => {
 
 describe('useAsyncEntity', () => {
   it('should provide no entity', async () => {
+    const wrapper: WrapperComponent<{ children?: React.ReactNode }> = ({
+      children,
+    }) => <AsyncEntityProvider loading={false} children={children} />;
     const { result } = renderHook(() => useAsyncEntity(), {
-      wrapper: ({ children }) => (
-        <AsyncEntityProvider loading={false} children={children} />
-      ),
+      wrapper,
     });
 
     expect(result.current.entity).toBe(undefined);
@@ -83,15 +91,18 @@ describe('useAsyncEntity', () => {
 
   it('should provide an entity', async () => {
     const refresh = () => {};
+    const wrapper: WrapperComponent<{ children?: React.ReactNode }> = ({
+      children,
+    }) => (
+      <AsyncEntityProvider
+        loading={false}
+        entity={entity}
+        refresh={refresh}
+        children={children}
+      />
+    );
     const { result } = renderHook(() => useAsyncEntity(), {
-      wrapper: ({ children }) => (
-        <AsyncEntityProvider
-          loading={false}
-          entity={entity}
-          refresh={refresh}
-          children={children}
-        />
-      ),
+      wrapper,
     });
 
     expect(result.current.entity).toBe(entity);
@@ -102,14 +113,13 @@ describe('useAsyncEntity', () => {
 
   it('should provide an error', async () => {
     const error = new Error('oh no');
+    const wrapper: WrapperComponent<{ children?: React.ReactNode }> = ({
+      children,
+    }) => (
+      <AsyncEntityProvider loading={false} error={error} children={children} />
+    );
     const { result } = renderHook(() => useAsyncEntity(), {
-      wrapper: ({ children }) => (
-        <AsyncEntityProvider
-          loading={false}
-          error={error}
-          children={children}
-        />
-      ),
+      wrapper,
     });
 
     expect(result.current.entity).toBe(undefined);
@@ -121,17 +131,20 @@ describe('useAsyncEntity', () => {
   it('should provide entityRef analytics context', () => {
     const analyticsSpy = new MockAnalyticsApi();
     const apis = TestApiRegistry.from([analyticsApiRef, analyticsSpy]);
+    const wrapper: WrapperComponent<{ children?: React.ReactNode }> = ({
+      children,
+    }) => (
+      <ApiProvider apis={apis}>
+        <AsyncEntityProvider
+          loading={false}
+          entity={entity}
+          refresh={() => {}}
+          children={children}
+        />
+      </ApiProvider>
+    );
     const { result } = renderHook(() => useAnalytics(), {
-      wrapper: ({ children }) => (
-        <ApiProvider apis={apis}>
-          <AsyncEntityProvider
-            loading={false}
-            entity={entity}
-            refresh={() => {}}
-            children={children}
-          />
-        </ApiProvider>
-      ),
+      wrapper,
     });
 
     result.current.captureEvent('test', 'value');
@@ -144,12 +157,15 @@ describe('useAsyncEntity', () => {
   it('should omit entityRef analytics context', () => {
     const analyticsSpy = new MockAnalyticsApi();
     const apis = TestApiRegistry.from([analyticsApiRef, analyticsSpy]);
+    const wrapper: WrapperComponent<{ children?: React.ReactNode }> = ({
+      children,
+    }) => (
+      <ApiProvider apis={apis}>
+        <AsyncEntityProvider loading={false} children={children} />
+      </ApiProvider>
+    );
     const { result } = renderHook(() => useAnalytics(), {
-      wrapper: ({ children }) => (
-        <ApiProvider apis={apis}>
-          <AsyncEntityProvider loading={false} children={children} />
-        </ApiProvider>
-      ),
+      wrapper,
     });
 
     result.current.captureEvent('test', 'value');

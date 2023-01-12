@@ -15,7 +15,7 @@
  */
 
 import React from 'react';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook, WrapperComponent } from '@testing-library/react-hooks';
 import { usePluginOptions, PluginProvider } from './usePluginOptions';
 import { createPlugin } from '../plugin';
 
@@ -37,10 +37,11 @@ describe('usePluginOptions', () => {
       },
     });
 
+    const wrapper: WrapperComponent<{ children?: React.ReactNode }> = ({
+      children,
+    }) => <PluginProvider plugin={plugin}>{children}</PluginProvider>;
     const rendered = renderHook(() => usePluginOptions(), {
-      wrapper: ({ children }) => (
-        <PluginProvider plugin={plugin}>{children}</PluginProvider>
-      ),
+      wrapper,
     });
 
     const config = rendered.result.current;

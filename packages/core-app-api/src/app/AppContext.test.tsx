@@ -40,8 +40,8 @@ describe('v1 consumer', () => {
     };
 
     const renderedHook = renderHook(() => useMockAppV1(), {
-      wrapper: ({ children }) => (
-        <AppContextProvider appContext={mockContext} children={children} />
+      wrapper: () => (
+        <AppContextProvider appContext={mockContext} children={[]} />
       ),
     });
     const result = renderedHook.result.current;

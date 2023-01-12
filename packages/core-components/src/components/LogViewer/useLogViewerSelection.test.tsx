@@ -15,7 +15,11 @@
  */
 
 import React from 'react';
-import { act, renderHook } from '@testing-library/react-hooks';
+import {
+  act,
+  renderHook,
+  WrapperComponent,
+} from '@testing-library/react-hooks';
 import { TestApiProvider, MockErrorApi } from '@backstage/test-utils';
 import { errorApiRef } from '@backstage/core-plugin-api';
 import { AnsiLine } from './AnsiProcessor';
@@ -39,12 +43,17 @@ const lines = [
 
 describe('useLogViewerSelection', () => {
   it('should manage a selection', () => {
-    const rendered = renderHook(() => useLogViewerSelection(lines), {
-      wrapper: ({ children }) => (
+    const wrapper: WrapperComponent<{ children?: React.ReactNode }> = ({
+      children,
+    }) => {
+      return (
         <TestApiProvider apis={[[errorApiRef, new MockErrorApi()]]}>
           {children}
         </TestApiProvider>
-      ),
+      );
+    };
+    const rendered = renderHook(() => useLogViewerSelection(lines), {
+      wrapper,
     });
 
     expect(rendered.result.current.isSelected(1)).toBe(false);

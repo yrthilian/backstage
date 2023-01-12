@@ -385,7 +385,7 @@ describe('v1 consumer', () => {
         initialProps: {
           routeRef: routeRef1 as AnyRouteRef,
         },
-        wrapper: ({ children }) => (
+        wrapper: () => (
           <RoutingProvider
             routePaths={
               new Map<RouteRef<any>, string>([
@@ -397,7 +397,7 @@ describe('v1 consumer', () => {
             routeObjects={[]}
             routeBindings={new Map()}
             basePath="/base"
-            children={children}
+            children={[]}
           />
         ),
       },
