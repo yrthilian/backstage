@@ -44,8 +44,11 @@ import {
 } from '@backstage/plugin-scaffolder-react';
 import { JsonValue } from '@backstage/types';
 import { FormProps } from '../types';
-import { nextRouteRef } from '../routes';
-import { scaffolderTaskRouteRef, selectedTemplateRouteRef } from '../../routes';
+import {
+  nextRouteRef,
+  nextScaffolderTaskRouteRef,
+  nextSelectedTemplateRouteRef,
+} from '../routes';
 
 type TemplateWizardPageProps = {
   customFieldExtensions: NextFieldExtensionOptions<any, any>[];
@@ -77,12 +80,12 @@ const useTemplateParameterSchema = (templateRef: string) => {
 export const TemplateWizardPage = (props: TemplateWizardPageProps) => {
   const styles = useStyles();
   const rootRef = useRouteRef(nextRouteRef);
-  const taskRoute = useRouteRef(scaffolderTaskRouteRef);
+  const taskRoute = useRouteRef(nextScaffolderTaskRouteRef);
   const { secrets } = useTemplateSecrets();
   const scaffolderApi = useApi(scaffolderApiRef);
   const navigate = useNavigate();
   const { templateName, namespace } = useRouteRefParams(
-    selectedTemplateRouteRef,
+    nextSelectedTemplateRouteRef,
   );
 
   const templateRef = stringifyEntityRef({
